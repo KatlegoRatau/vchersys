@@ -1,0 +1,47 @@
+<div id="wrapper">
+  <div class="vertical-align-wrap">
+    <div class="vertical-align-middle">
+      <div class="auth-box ">
+        <div class="left">
+          <div class="content">
+            <div class="header">
+              <div class="logo text-center">
+
+                <div class="user text-center">
+                  <img src="assets/mainv/img/user-medium.png" class="img-circle" alt="Avatar">
+                  <h2 class="name">{{colleague.name}} {{colleague.surname}}</h2>
+                </div>
+
+              </div>
+              <p class="lead">Hi {{colleague.name}}, create a password and login</p>
+            </div>
+            <form  #form="ngForm" (ngSubmit)="onLogin(form)" class="form-auth-small" action="index.php">
+              <div class="form-group">
+                <label for="signin-email" class="control-label sr-only">Email</label>
+                <input type="email" class="form-control" name="email" readonly id="signin-email" value={{colleague.email}} placeholder="Email">
+              </div>
+              <div class="form-group">
+                <label for="signin-password" class="control-label sr-only">Password</label>
+                <input type="password" class="form-control" id="signin-password" minlength="3" name="pwd" placeholder="Enter new Password" ngModel required>
+              </div>
+
+
+           
+              <button type="submit" [disabled]="!form.valid" class="btn btn-primary btn-lg btn-block">LOGIN</button>
+             
+            </form>
+          </div>
+        </div>
+        <div class="right">
+          <div class="overlay"></div>
+          <div class="content text">
+            <h1 class="heading">Free Bootstrap dashboard template</h1>
+            <p>by The Develovers</p>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END WRAPPER -->
