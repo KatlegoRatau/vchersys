@@ -92,6 +92,7 @@
 														<th>Role</th>
 														<th>Charge Code</th>
 														<th>Firm Number(FMNO)</th>
+														<th *ngIf="isFilter">Total Sales(R)</th>
 														<th *ngIf="isAdmin">Action</th>
 													</tr>
 												</thead>
@@ -102,6 +103,7 @@
 														<td>{{department.role}}</td>
 														<td>{{department.charge_code}}</td>
 														<td>{{department.fmno}}</td>
+														<td *ngIf="isFilter">{{department.full_amount}}</td>
 														<td *ngIf="isAdmin"><i title="Delete" (click)="onDelete(department)" class="fa fa-trash-o" style="color:red; font-size:18px" aria-hidden="true"></i></td>
 													</tr>
 													
@@ -130,9 +132,11 @@
 										<div class="panel-body">
 											<div class="input-group">
 													<select class="form-control" name="fliterOption" ngModel required>
-															<option value="asc">Ascending Order(R Total Sales)</option>
-															<option value="des">Descending Order(R Total Sales)</option>
-															<option value="date">Dates</option>
+															<option value="desc">Department with high sales(R Total Sales)</option>
+
+															<option value="asc">Department with low sales(R Total Sales)</option>
+															
+															<!-- <option value="date">Dates</option> -->
 														
 														</select>
 												<span class="input-group-btn"><button class="btn btn-primary" type="submit">Go!</button></span>

@@ -23,6 +23,9 @@ export class DeptComponent implements OnInit {
   date:any;
   events:any;
   vouchers:any;
+
+  isFilter:boolean = false;
+
   constructor(private http: Http,private zone : NgZone, private router: Router) {
     this.date =new Date();
    }
@@ -30,6 +33,7 @@ export class DeptComponent implements OnInit {
 
   onLogout()
   {
+    this.isFilter = false;
     localStorage.removeItem("user");
     localStorage.removeItem("control");
     this.router.navigate(['/logmain']);
@@ -38,7 +42,7 @@ export class DeptComponent implements OnInit {
 
   onAddDepartment(form)
   {
-
+    this.isFilter = false;
    let department = {
 
         department_id : form.value.department_id,
@@ -89,6 +93,7 @@ export class DeptComponent implements OnInit {
 
   onDelete(department)
   {
+    this.isFilter = false;
     firebase.database().ref('department/' + department.key).remove();
     this.ngOnInit();
 
@@ -97,75 +102,205 @@ export class DeptComponent implements OnInit {
   onFilter(form)
   {
 
-    console.log(this.events);
-    console.log(this.vouchers);
-    this.vouchers.sort(function(obj1, obj2) {
-      // Ascending: first age less than the previous
-    
-        return obj2.total_amount - obj1.total_amount  ;
-    });
-    let newArrVoucherEvent = [];
-    for(let i = 0; i< this.events.length; i++)
+   console.log(form.value.fliterOption);
+
+   if(!form.value.fliterOption)
+   {
+      alert("Please select an option from the drop down list.");
+      return;
+   }
+
+
+   //Sort Descending order
+   if(form.value.fliterOption =='desc')
+   {
+
+    this.isFilter = true;
+
+    let depts = [];
+    for(let i = 0; i<this.departments.length; i++ )
     {
 
-        for(let v = 0; v< this.vouchers.length; v++)
-        {
-
-          if(this.events[i].voucher_id == this.vouchers[v].voucher_id)
+      for(let x = 0; x< this.events.length; x++)
+      { 
+          if(this.departments[i].department_id == this.events[x].department_id)
           {
-              newArrVoucherEvent.push(this.events[i]);
+
+            this.departments[i].voucher_id = this.events[x].voucher_id;
+            depts.push(this.departments[i]);
 
           }
 
+      }
 
-        }
 
     }
 
-    console.log('-------=====');
-    console.log(newArrVoucherEvent);
-  let vcher =[];
-  let vcherEvent = [];
 
+  let totalAmounts:number = 0;
 
-  for(let i = 0; i< newArrVoucherEvent.length; i++)
+  for(let d = 0; d < depts.length; d++)
   {
-
-    for(let x = 0; x< this.vouchers.length; x++)
-    {
-
-        if(newArrVoucherEvent[i].voucher_id == this.vouchers[x].voucher_id)
+      totalAmounts = 0;
+        for(let v = 0; v< this.vouchers.length; v++)
         {
+          totalAmounts = this.vouchers[v].total_amount;
 
-            vcher.push(this.vouchers[x]);
-            vcherEvent.push(newArrVoucherEvent[i]);
+          if(depts[d].voucher_id == this.vouchers[v].voucher_id)
+          {
+              
+           
+             depts[d].total_amount = this.vouchers[v].total_amount
+
+          }   
+
+       
+
 
         }
-
-    }
+  
+        
 
   }
 
-  console.log("NEW====");
-  console.log(vcher);
-  console.log(vcherEvent);
 
+  console.log("=---=====Depts22222====---====");
+ 
+
+  let total:number = 0;
+
+  for(let i =0; i< this.departments.length; i++)
+  {
+    total = 0;
+    for(let z = 0; z< depts.length; z++)
+    {
+
+      if(this.departments[i].department_id == depts[z].department_id)
+      {
+          total+= depts[z].total_amount;
+
+      }
+
+
+    }
+
+    this.departments[i].full_amount =total;
+
+
+  }
+
+  console.log("=========");
+
+   
+
+
+  this.departments.sort(function(obj1, obj2) {
+    // Ascending: first age less than the previous
   
+      return obj2.full_amount - obj1.full_amount  ;
+  });
+  console.log("====sorted Desc=====");
+  console.log(this.departments);
+
+
+
+    //Sort Ascending order
+   }else if(form.value.fliterOption =='asc')
+   {
+     this.isFilter = true;
+
+    let depts = [];
+    for(let i = 0; i<this.departments.length; i++ )
+    {
+
+      for(let x = 0; x< this.events.length; x++)
+      { 
+          if(this.departments[i].department_id == this.events[x].department_id)
+          {
+
+            this.departments[i].voucher_id = this.events[x].voucher_id;
+            depts.push(this.departments[i]);
+
+          }
+
+      }
+
+
+    }
+
+
+  let totalAmounts:number = 0;
+
+  for(let d = 0; d < depts.length; d++)
+  {
+      totalAmounts = 0;
+        for(let v = 0; v< this.vouchers.length; v++)
+        {
+          totalAmounts = this.vouchers[v].total_amount;
+
+          if(depts[d].voucher_id == this.vouchers[v].voucher_id)
+          {
+              
+           
+             depts[d].total_amount = this.vouchers[v].total_amount
+
+          }   
+
+       
+
+
+        }
   
+        
+
+  }
 
 
-  //   for(let i = 0; i < newArrVoucherEvent.length; i++)
-  //   {
+  console.log("=---=====Depts22222====---====");
+ 
 
-  //     for()
+  let total:number = 0;
 
-      
-  //   }
+  for(let i =0; i< this.departments.length; i++)
+  {
+    total = 0;
+    for(let z = 0; z< depts.length; z++)
+    {
+
+      if(this.departments[i].department_id == depts[z].department_id)
+      {
+          total+= depts[z].total_amount;
+
+      }
 
 
-  // console.log("=______00-009");
-  // console.log(vcher);
-  // console.log(vcherEvent);
+    }
+
+    this.departments[i].full_amount =total;
+
+
+  }
+
+  console.log("=========");
+
+   
+
+
+    this.departments.sort(function(obj1, obj2) {
+      // Ascending: first age less than the previous
+    
+        return  obj1.full_amount - obj2.full_amount    ;
+    });
+    console.log("====sorted Asc=====");
+    console.log(this.departments);
+
+
+
+
+   }
+
+
+   
 
 
 
