@@ -1,0 +1,205 @@
+
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+          <a ><img src="assets/mainv/img/v.png" alt="logo" class="img-responsive logo vc"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+			
+			
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+								<i class="lnr lnr-alarm"></i>
+								<span class="badge bg-danger">5</span>
+							</a>
+							<ul class="dropdown-menu notifications">
+								<li><a  class="notification-item"><span class="dot bg-warning"></span>Notification</a></li>
+							
+							</ul>
+						</li>
+					
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}}  class="img-circle" alt="Picture"> <span>{{userInfo.name}} {{userInfo.surname}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a routerLink = "/profile"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a (click)="onLogout()"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+						<!-- <li>
+							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+				<nav>
+					<ul class="nav">
+              <li routerLink = "/admin" ><a class=""><i class="lnr lnr-home"></i> <span>Dashboard-Home</span></a></li>
+              <li routerLink = "/mealvoucher"><a  class=""><i class="lnr lnr-code"></i> <span>Meal Vouchers</span></a></li>
+              <li><a routerLink="/department" class=""><i class="lnr lnr-chart-bars"></i> <span>Departments</span></a></li>
+              <li><a routerLink = "/events" class="active"><i class="lnr lnr-cog"></i> <span>Events</span></a></li>
+					
+						<li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>User</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a routerLink = "/profile" class="">Profile</a></li>
+									<li><a (click)="onLogout()" class="">Logout</a></li>
+								
+								</ul>
+							</div>
+						</li>
+					
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<h3 class="page-title">Events</h3>
+					
+          
+
+
+					<div *ngFor="let event of events" class="row">
+				
+			
+						<div class="col-md-8">
+							<!-- PANEL WITH FOOTER -->
+							<div class="panel">
+								<div class="panel-heading">
+									<h3 class="panel-title">Event ID: {{event.event_id}}</h3>
+									<div class="right">
+										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+									</div>
+								</div>
+								<div class="panel-body no-padding bg-primary text-center">
+                    <div class="padding-top-30 padding-bottom-30">
+                      <i class="fa fa-calendar-check-o fa-5x" aria-hidden="true"></i>
+                      <h3>Voucher ID: {{event.voucher_id}}</h3>
+                      <h3>Department ID:  {{event.department_id}}</h3>
+                    </div>
+                  </div>
+								<div class="panel-footer">
+                <div class="row">
+                  <div class="col-md-10">	<h5>Event Date : {{event.event_date}}</h5> </div>
+                  <div *ngIf="isAdmin" class="col-md-2"><i title="Delete" (click)="onDelete(event)" class="fa fa-trash-o" style="color:red; font-size:24px" aria-hidden="true"></i></div>
+
+                  </div>
+								</div>
+							</div>
+							<!-- END PANEL WITH FOOTER -->
+						</div>
+          </div>
+
+
+
+
+          <div *ngIf="isAdmin" class="row">
+              <div class="col-md-8">
+                  <!-- MULTI CHARTS -->
+                  <div class="panel">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Add Event</h3>
+                      <div class="right">
+                        <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                      </div>
+                    </div>
+                    <div class="panel-body">
+                      
+                      <div class="panel">
+                        <!-- <div class="panel-heading">
+                          <h3 class="panel-title">Input Groups</h3>
+                        </div> -->
+                        <div class="panel-body">
+                        
+                          <form #form="ngForm" (ngSubmit)="onAddEvent(form)"> 
+                        
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;Event_ID</span>
+                            <input class="form-control" placeholder="" type="text" ngModel required name="event_id">
+                          </div>
+            
+                        
+                          <br>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;Event Date</span>
+                            <input  placeholder="Total amount" class="form-control" type="date" ngModel required name="event_date">
+ 
+                          </div>
+      
+                          <br>
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;Voucher_ID</span>
+                            <select class="form-control" ngModel required name="voucher_id">
+                                <option *ngFor="let voucher of vouchers" value={{voucher.voucher_id}} > {{voucher.voucher_id}}</option>
+                              
+                              </select>
+                          </div>
+                          <br>
+
+                          <div class="input-group">
+                              <span class="input-group-addon"><i class="fa fa-file-text-o" aria-hidden="true"></i>&nbsp;&nbsp;Department_ID</span>
+                              <select class="form-control" ngModel required name="department_id">
+                                  <option *ngFor ="let department of departments" value={{department.department_id}} >{{department.department_id}}</option>
+                                  
+                                </select>
+                            </div>
+                            <br>
+                         
+                            <button type="button" [disabled]="!form.valid" type="submit" class="btn btn-primary btn-bottom center-block">Save &nbsp;<i class="fa fa-telegram" aria-hidden="true"></i></button>
+                            </form>
+      
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                  <!-- END MULTI CHARTS -->
+                </div>
+            
+            </div>
+          
+
+			
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+		<!-- END MAIN -->
+		<div class="clearfix"></div>
+		<footer>
+			<div class="container-fluid">
+				<p class="copyright">&copy; 2018. All Rights Reserved.</p>
+			</div>
+		</footer>
+	</div>
+	<!-- END WRAPPER -->
+	<!-- Javascript -->
+  
+  <script src="assets/mainv/vendor/jquery/jquery.min.js"></script>
+<script src="assets/mainv/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/mainv/vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="assets/mainv/scripts/klorofil-common.js"></script>
+
+<script src="assets/mainv/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="assets/mainv/vendor/chartist/js/chartist.min.js"></script>
+	<script src="assets/mainv/scripts/klorofil-common.js"></script>
+

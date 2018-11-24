@@ -52,6 +52,10 @@ export class LogComponent implements OnInit {
 
 
 
+      }else{
+
+        alert("Invalid Email/Password");
+
       }
 
   }

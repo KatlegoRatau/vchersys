@@ -1,0 +1,143 @@
+	<!-- WRAPPER -->
+	<div id="wrapper">
+		<!-- NAVBAR -->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="brand">
+        <a ><img src="assets/mainv/img/v.png" alt="logo" class="img-responsive logo vc"></a>
+			</div>
+			<div class="container-fluid">
+				<div class="navbar-btn">
+					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
+				</div>
+		
+			
+				<div id="navbar-menu">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
+                <i class="lnr lnr-ala
+                rm"></i>
+								<span class="badge bg-danger">5</span>
+							</a>
+							<ul class="dropdown-menu notifications">
+								<li><a  class="more">Notifications</a></li>
+							</ul>
+						</li>
+					
+						<li class="dropdown">
+							<a  class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}} class="img-circle" alt="Picture"> <span>{{userInfo.name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
+								<li><a  routerLink = "/profile" ><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+							
+								<li><a (click)="onLogout()"  ><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+						<!-- <li>
+							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAVBAR -->
+		<!-- LEFT SIDEBAR -->
+		<div id="sidebar-nav" class="sidebar">
+			<div class="sidebar-scroll">
+        <nav>
+					<ul class="nav">
+              <li routerLink = "/admin" ><a class=""><i class="lnr lnr-home"></i> <span>Dashboard-Home</span></a></li>
+              <li routerLink = "/mealvoucher"><a  class=""><i class="lnr lnr-code"></i> <span>Meal Vouchers</span></a></li>
+              <li><a routerLink="/department" class=""><i class="lnr lnr-chart-bars"></i> <span>Departments</span></a></li>
+              <li><a routerLink = "/events" class=""><i class="lnr lnr-cog"></i> <span>Events</span></a></li>
+					
+						<li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>User</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+							<div id="subPages" class="collapse ">
+								<ul class="nav">
+									<li><a routerLink = "/profile" class="">Profile</a></li>
+									<li><a (click)="onLogout()"  class="">Logout</a></li>
+								
+								</ul>
+							</div>
+						</li>
+					
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<!-- END LEFT SIDEBAR -->
+		<!-- MAIN -->
+		<div class="main">
+			<!-- MAIN CONTENT -->
+			<div class="main-content">
+				<div class="container-fluid">
+					<div class="panel panel-profile">
+						<div class="clearfix">
+							<!-- LEFT COLUMN -->
+							<div class="profile-left">
+								<!-- PROFILE HEADER -->
+								<div class="profile-header">
+									<div class="overlay"></div>
+									<div class="profile-main">
+										<img src={{userInfo.picture}} class="img-circle userpic" alt="Avatar">
+										<h3 class="name">{{userInfo.name}}  {{userInfo.surname}}</h3>
+										<span class="online-status status-available">Available</span>
+									</div>
+									<!-- <div class="profile-stat">
+										<div class="row">
+											<div class="col-md-4 stat-item">
+												45 <span>Projects</span>
+											</div>
+											<div class="col-md-4 stat-item">
+												15 <span>Awards</span>
+											</div>
+											<div class="col-md-4 stat-item">
+												2174 <span>Points</span>
+											</div>
+										</div>
+									</div> -->
+								</div>
+								<!-- END PROFILE HEADER -->
+								<!-- PROFILE DETAIL -->
+								<div class="profile-detail">
+									<div class="profile-info">
+										<h4 class="heading">Basic Info</h4>
+										<ul class="list-unstyled list-justify">
+											<li>Hiredate <span>{{userInfo.hiredate}}</span></li>
+											<li>Email <span>{{userInfo.email}}</span></li>
+										
+                      <li>Firm Number <span>{{userInfo.fmno}}</span></li>
+                      
+										</ul>
+									</div>
+							
+
+								</div>
+								<!-- END PROFILE DETAIL -->
+							</div>
+							<!-- END LEFT COLUMN -->
+              <!-- RIGHT COLUMN -->
+              
+
+            
+							<!-- END RIGHT COLUMN -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END MAIN CONTENT -->
+		</div>
+    <!-- END MAIN -->
+    
+    <footer>
+      <div class="container-fluid">
+        <p class="copyright">&copy; 2018 . All Rights Reserved.</p>
+      </div>
+    </footer>
+</div>
+<!-- END WRAPPER -->
+
+<script src="assets/mainv/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="assets/mainv/vendor/chartist/js/chartist.min.js"></script>
+	<script src="assets/mainv/scripts/klorofil-common.js"></script>
+

@@ -10,22 +10,39 @@ import * as firebase from 'firebase/app';
 export class LogmainComponent implements OnInit {
 
   list: any;
-  persons: any;
+  persons: any[];
   colleague: any;
+
+  countPeople: number;
   constructor(private route: ActivatedRoute, private router: Router, private zone : NgZone) { }
 
   onLogin(form)
   {
-        if(this.colleague)
-        {
+      
+      
+          for(let i = 0; i< this.persons.length; i++)
+          {
 
-            if(form.value.email == this.colleague.email )
-            {
-
-              if(form.value.pwd == this.colleague.pwd)
+      
+              if(this.persons[i].email == form.value.email )
               {
 
-                if(this.colleague.role =="admin")
+                if(this.persons[i].pwd == form.value.pwd)
+                {
+                    this.colleague = this.persons[i];
+                  
+                    break;
+
+                }
+              }
+
+          }
+
+
+          if(this.colleague)
+          {
+
+            if(this.colleague.role =="admin")
                 {
 
                   localStorage.setItem("control","admin");
@@ -41,21 +58,43 @@ export class LogmainComponent implements OnInit {
 
                 }
 
-              }
 
-            }
+          }else{
 
+              alert("Invalid Email/Password");
+          }
+            
+            // if(form.value.email == this.colleague.email )
+            // {
 
-        }
+            //   if(form.value.pwd == this.colleague.pwd)
+            //   {
+
+            //     if(this.colleague.role =="admin")
+            //     {
+
+            //       localStorage.setItem("control","admin");
+            //       localStorage.setItem("user",JSON.stringify(this.colleague));
+            //       this.router.navigate(['/admin']);
+
+            //     }else
+            //     {
+
+            //       localStorage.setItem("control","emp");
+            //       localStorage.setItem("user",JSON.stringify(this.colleague));
+            //       this.router.navigate(['/admin']);
+
+            //     }
+
+            //   }
+
+            // }
 
   }
 
   ngOnInit() {
 
-    let countPeople = 0;
-    this.route.paramMap.subscribe(params =>{
-        let fmno = params.get("fmno");
-        
+    this.countPeople = 0;
 
         this.list = firebase.database().ref('/colleagues');
         this.list.on('value', (dataSnapshot)=> {
@@ -64,30 +103,15 @@ export class LogmainComponent implements OnInit {
       dataSnapshot.forEach((childSnapshot) => {
         let person = childSnapshot.val();
         person.key = childSnapshot.key
-        countPeople++;
+          this.countPeople ++;
           this.persons.push(person);
+    
 
       });
         
-      if(this.persons.length == countPeople)
-      {
-          for(let i = 0; i< countPeople ; i++ )
-          {
-            console.log(this.persons[i].fmno);
-              if(this.persons[i].fmno == fmno)
-              {
-                  
-                  this.colleague = this.persons[i];
-                  console.log(this.colleague);
-                  this.zone.run(()=> {});
-                  break;
-
-              }
-
-          }
-      }
+    
       });
-    })
+    
 }
 
 }

@@ -1,0 +1,124 @@
+[
+
+    {
+        "sessionErrorCode":12504,
+        "description":"String The error is returned by the network when it receives a parameter with an unexpected value, without type violation. This error is returned by the responder if it is not able to deal with the contents of the USSD string. (Push) (Pull) unexpectedDataValue"
+    },
+    {
+        "sessionErrorCode":12511,
+        "description":"The transaction ID specified is not valid. (Push) (Pull)"
+    },
+    {
+        "sessionErrorCode":12514,
+        "description":"No push agent has been configured for the application. (Push)"
+    },
+    {
+      "sessionErrorCode":12515,
+      "description":"Push functionality is not supported on this implementation. (Push)"
+    },
+    {
+      "sessionErrorCode":12516,
+      "description":"Push initialisation failed (Push)"
+    },
+    {
+      "sessionErrorCode":12520,
+      "description":"Menu redirection failed (Pull)"
+    },
+    {
+      "sessionErrorCode":1252,
+      "description":"MAP Abort (Pull)"
+    },
+    {
+      "sessionErrorCode":12528,
+      "description":"The session was aborted because of an application timeout. (Pull)v"
+    },
+    {
+      "csessionErrorCodeode":12529,
+      "description":"The session was aborted because of a NIM timeout. (Push) (Pull)"
+    },
+    {
+      "sessionErrorCode":12530,
+      "description":"The session was aborted because of an application timeout after session resumption. (Pull)"
+    },
+    {
+  
+      "sessionErrorCode":12531,
+      "description":"The session was aborted because of a NIM timeout after session resumption. (Pull)"
+    },
+    {
+      "sessionErrorCode":12550,
+      "description":"The error is returned for an unknown subscriber. (Push)String   unknownSub"
+    },
+    {
+      "sessionErrorCode":125513,
+      "description":"This error is returned if the subscriber is barred. (Push) String  callBarred"
+    },
+    {
+      "sessionErrorCode":12552,
+      "description":"The error is returned when the subscriber is absent. (Push) String  absentSub"
+     
+    },
+    {
+      "sessionErrorCode":12553,
+      "description":"The error is returned for network element system failure. (Push) String  systemFailure"
+    },
+    {
+      "sessionErrorCode":12554,
+      "description":"The errorString  dataMissing is returned for USSD push data missing. (Push)"
+    },
+    {
+      "sessionErrorCode":12555,
+      "description":"This error is returned by the MS or the network when the alphabet/language used for the USSD operation is not known by the network or the MS. (Push)    String  unknownAlphabet"
+    },
+    {
+      "csessionErrorCodeode":12556,
+      "description":"This error is returned if the MS is already on a USSD session. (Push)String  ussdBusy (Push)"
+      
+    },
+    {
+      "sessionErrorCode":12557,
+      "description":"This error is returned network aborts. (Push)  String  networkError"
+    
+    },
+    {
+      "sessionErrorCode":12558,
+      "description":"This error is returned when user aborts. (Push)   String  userAbort"
+   
+    },
+    {
+      "sessionErrorCode":12502,
+      "description":"One or more arguments specified are invalid."
+    },
+    {
+      "sessionErrorCode":12504,
+      "description":"The data received does not conform to what is expected."
+    },
+    {
+      "sessionErrorCode":12505,
+      "description":"Timeout"
+    },
+    {
+      "sessionErrorCode":12506,
+      "description":"Invalid run node"
+    },
+    {
+      "sessionErrorCode":232323,
+      "description":"Desccbvbvbvbv"
+    },
+    {
+      "sessionErrorCode":12507,
+      "description":"The named connection specified is not running or not configured."
+    },
+    {
+      "sessionErrorCode":12508,
+      "description":"The named connection failed to be registered."
+    },
+    {
+      "sessionErrorCode":12509,
+      "description":"Log in to the USSD Access Point failed."
+    }
+  
+  
+     
+  ]
+  

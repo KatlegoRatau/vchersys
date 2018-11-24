@@ -18,15 +18,18 @@ var transporter = nodemailer.createTransport({
 
 
 
-exports.sendContactMessage = functions.database.ref('/colleagues/{pushKey}').onWrite(event => {
+exports.sendContactMessage = functions.database.ref('/colleagues/{pushKey}').onCreate(event => {
   const snapshot = event.data;
-// Only send email for new messages.
-  if (snapshot.previous.val() || !snapshot.val().name) {
-    return;
-  }
-  
-  const val = snapshot.val();
-  console.log(val);
+//Only send email for new messages.
+
+//console.log(snapshot.val().name);
+//console.log("========");
+  // if (snapshot.previous.val() || !snapshot.val().name) {
+  //   return;
+  // }
+
+ let val = snapshot.val();
+
   const mailOptions = {
 	from: 'katlego.kg27@gmail.com' ,
     to: val.email ,
