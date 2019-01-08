@@ -16,11 +16,11 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
               <i class="lnr lnr-alarm"></i>
-              <span class="badge bg-danger">5</span>
+              <span class="badge bg-danger">{{vouchers.length}}</span>
             </a>
             <ul class="dropdown-menu notifications">
              
-              <li><a class="more">Notifications</a></li>
+              <li><a class="more">{{vouchers.length}} Voucher(s)</a></li>
             </ul>
           </li>
           <!-- <li class="dropdown">
@@ -33,10 +33,10 @@
             </ul>
           </li> -->
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}}  class="img-circle" alt="Avatar"> <span>{{userInfo.name}} {{userInfo.surname}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}}  class="img-circle" alt=""> <span>{{userInfo.name}} {{userInfo.surname}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li><a routerLink="/profile"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-              <li><a (click)="onLogout()" ><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+              <li><a (click)="onLogout()"  matTooltip="Logout" ><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
             </ul>
           </li>
           <!-- <li>
@@ -62,7 +62,7 @@
             <div id="subPages" class="collapse ">
               <ul class="nav">
                 <li><a routerLink="/profile" class="">Profile</a></li>
-                <li><a (click)="onLogout()" class="">Logout</a></li>
+                <li><a (click)="onLogout()"  matTooltip="Logout" class="">Logout</a></li>
              
               </ul>
             </div>
@@ -84,6 +84,84 @@
             <h3 class="panel-title">Overview</h3>
             <p class="panel-subtitle">Today's date: {{date}}</p>
           </div>
+
+          <div class="panel-body">
+              <div class="col-md-4">
+                
+                <div class="panel">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                    &nbsp; 
+                    &nbsp; 
+                      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    </h3>
+                    <div class="right">
+                      <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                      <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                    </div>
+                  </div>
+                  <div class="panel-body no-padding bg-primary text-center">
+                    <div class="padding-top-30 padding-bottom-30">
+                        <!-- <i class="fa fa-table fa-5x" aria-hidden="true"></i>
+                      <h3>Events</h3> -->
+                      <img class="vimg" src="assets/mainv/img/pic3.jpeg">
+                    </div>
+                  </div>
+                </div>
+            
+              </div>
+              
+              <div class="col-md-4">
+          
+                <div class="panel">
+                  <div class="panel-heading">
+                      <h3 class="panel-title"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                        &nbsp; 
+                        &nbsp; 
+                          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        </h3>
+                    <div class="right">
+                      <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                      <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                    </div>
+                  </div>
+                  <div class="panel-body no-padding bg-primary text-center">
+                    <div class="padding-top-30 padding-bottom-30">
+                        <!-- <i class="fa fa-users fa-5x" aria-hidden="true"></i>
+                      <h3>Colleagues and Admins</h3> -->
+                      <img class="vimg" src="assets/mainv/img/pic4.jpeg">
+                    </div>
+                  </div>
+                </div>
+              
+              </div>
+              
+              <div class="col-md-4">
+          
+                <div class="panel">
+                  <div class="panel-heading">
+                      <h3 class="panel-title"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                        &nbsp; 
+                        &nbsp; 
+                          <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                        </h3>
+                    <div class="right">
+                      <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                      <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                    </div>
+                  </div>
+                  <div class="panel-body no-padding bg-primary text-center">
+                    <div class="padding-top-30 padding-bottom-30">
+                        <!-- <i class="fa fa-table fa-5x" aria-hidden="true"></i>
+                      <h3>Locations and Resturants</h3> -->
+                      <img class="vimg" src="assets/mainv/img/pic2.jpeg">
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+             
+            </div>
 
         </div>
 
@@ -125,7 +203,7 @@
                       <td>{{voucher.amount_spent}}</td>
                       <td>{{voucher.balance}}</td>
                       <td><span class="label label-success">{{voucher.voucher_status}}</span></td>
-                      <td> <i class="fa fa-pencil-square-o" title="Click to Edit" (click)="onEdit(voucher)" style="color:blue; font-size:18px" aria-hidden="true"></i> &nbsp; <i title="Delete" (click)="onDelete(voucher)" class="fa fa-trash-o" style="color:red; font-size:18px" aria-hidden="true"></i></td>
+                      <td> <i   matTooltip="Edit" class="fa fa-pencil-square-o" title="Click to Edit" (click)="onEdit(voucher)" style="color:blue; font-size:18px" aria-hidden="true"></i> &nbsp; <i   matTooltip="Delete" title="Delete" (click)="onDelete(voucher)" class="fa fa-trash-o" style="color:red; font-size:18px" aria-hidden="true"></i></td>
                     </tr>
 
                   </tbody>

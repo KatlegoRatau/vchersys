@@ -16,7 +16,8 @@ import { MealvoucherComponent } from './mealvoucher/mealvoucher.component';
 import { DeptComponent } from './dept/dept.component';
 import { EventsComponent } from './events/events.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTooltipModule } from '@angular/material/tooltip';
 const config = {
   apiKey: "AIzaSyBPo1DUl9RjR5Zs11rpE2EOr0sPK3siXa4",
   authDomain: "test-fe8f1.firebaseapp.com",
@@ -46,7 +47,9 @@ const config = {
   imports: [
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
     HttpModule,
+    MatTooltipModule,
 		RouterModule.forRoot([
 			{path: '', component: LogmainComponent},
       {path: 'login/:fmno', component: LogComponent},

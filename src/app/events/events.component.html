@@ -17,10 +17,10 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
 								<i class="lnr lnr-alarm"></i>
-								<span class="badge bg-danger">5</span>
+								<span class="badge bg-danger">{{events.length}}</span>
 							</a>
 							<ul class="dropdown-menu notifications">
-								<li><a  class="notification-item"><span class="dot bg-warning"></span>Notification</a></li>
+								<li><a  class="notification-item"><span class="dot bg-warning"></span>{{events.length}} Event(s)</a></li>
 							
 							</ul>
 						</li>
@@ -29,7 +29,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}}  class="img-circle" alt="Picture"> <span>{{userInfo.name}} {{userInfo.surname}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a routerLink = "/profile"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-								<li><a (click)="onLogout()"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a (click)="onLogout()"  matTooltip="Logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 						<!-- <li>
@@ -55,7 +55,7 @@
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a routerLink = "/profile" class="">Profile</a></li>
-									<li><a (click)="onLogout()" class="">Logout</a></li>
+									<li><a (click)="onLogout()"  matTooltip="Logout" class="">Logout</a></li>
 								
 								</ul>
 							</div>
@@ -99,15 +99,107 @@
 								<div class="panel-footer">
                 <div class="row">
                   <div class="col-md-10">	<h5>Event Date : {{event.event_date}}</h5> </div>
-                  <div *ngIf="isAdmin" class="col-md-2"><i title="Delete" (click)="onDelete(event)" class="fa fa-trash-o" style="color:red; font-size:24px" aria-hidden="true"></i></div>
+                  <div *ngIf="isAdmin" class="col-md-2"><i  matTooltip="Delete" (click)="onDelete(event)" class="fa fa-trash-o" style="color:red; font-size:24px" aria-hidden="true"></i></div>
 
                   </div>
 								</div>
 							</div>
 							<!-- END PANEL WITH FOOTER -->
 						</div>
-          </div>
+					</div>
 
+
+
+
+
+
+					<div *ngIf="isAdmin" class="row">
+				
+			
+							<div class="col-md-8">
+								<!-- PANEL WITH FOOTER -->
+								<div class="panel">
+										<div class="panel-heading">
+											<h3 class="panel-title">Filter Between Events by date</h3>
+										</div>
+			
+										<form #form2="ngForm" (ngSubmit)="onFilter(form2)">
+										<div class="panel-body">
+											<div class="input-group">
+												
+													<div class="input-group">
+															<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;Start Date(From)</span>
+															<input  class="form-control" type="date" ngModel required name="start_date">
+	 
+												</div>
+
+												
+											</div>
+											<br>
+											
+											<div class="input-group">
+												
+													<div class="input-group">
+															<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;End Date(To)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+															<input   class="form-control" type="date" ngModel required name="end_date">
+	 
+												</div>
+
+												
+											</div>
+											<br>
+										
+											<span class="input-group-btn"><button class="btn btn-primary" type="submit">Go!</button></span>
+								
+										
+										
+									
+										</div>
+			
+										</form>
+									</div>
+			
+								<!-- END PANEL WITH FOOTER -->
+							</div>
+						</div>
+
+
+
+						<div *ngIf="isFilter"  class="row">
+				
+			
+								<div *ngFor="let eventFiltered of eventsByDate" class="col-md-8">
+									<!-- PANEL WITH FOOTER -->
+									<div class="panel">
+										<div class="panel-heading">
+											<h3 class="panel-title">Event ID: {{eventFiltered.event_id}}</h3>
+											<div class="right">
+												<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+												<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+											</div>
+										</div>
+										<div class="panel-body no-padding bg-primary text-center">
+												<div class="padding-top-30 padding-bottom-30">
+													<i class="fa fa-calendar-check-o fa-5x" aria-hidden="true"></i>
+													<h3>Voucher ID: {{eventFiltered.voucher_id}}</h3>
+													<h3>Department ID:  {{eventFiltered.department_id}}</h3>
+												</div>
+											</div>
+										<div class="panel-footer">
+										<div class="row">
+											<div class="col-md-10">	<h5>Event Date : {{eventFiltered.event_date}}</h5> </div>
+							
+											</div>
+										</div>
+									</div>
+									<!-- END PANEL WITH FOOTER -->
+								</div>
+							</div>
+
+
+
+					
+				
 
 
 

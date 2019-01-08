@@ -16,10 +16,10 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
               <i class="lnr lnr-alarm"></i>
-              <span class="badge bg-danger">5</span>
+              <span class="badge bg-danger">{{persons.length}}</span>
             </a>
             <ul class="dropdown-menu notifications">
-              <li><a class="notification-item"><span class="dot bg-warning"></span>Notification</a></li>
+              <li><a class="notification-item"><span class="dot bg-warning"></span>{{persons.length}} User(s)</a></li>
              
             </ul>
           </li>
@@ -33,11 +33,11 @@
             </ul>
           </li> -->
           <li class="dropdown">
-            <a  class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}}  class="img-circle" alt="Avatar"> <span>{{userInfo.name}} {{userInfo.surname}}</span><i class="icon-submenu lnr lnr-chevron-down"></i></a>
+            <a  class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}}  class="img-circle" alt=""> <span>{{userInfo.name}} {{userInfo.surname}}</span><i class="icon-submenu lnr lnr-chevron-down"></i></a>
             <ul class="dropdown-menu">
               <li><a routerLink = "/profile" ><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
   
-              <li ><a ><i class="lnr lnr-exit"></i> <span (click)="onLogout()">Logout</span></a></li>
+              <li matTooltip="Logout" ><a ><i class="lnr lnr-exit"   ></i> <span (click)="onLogout()">Logout</span></a></li>
             </ul>
           </li>
           <!-- <li>
@@ -63,7 +63,7 @@
             <div id="subPages" class="collapse ">
               <ul class="nav">
                 <li><a routerLink = "/profile" class="">Profile</a></li>
-                <li><a (click)="onLogout()" class="">Logout</a></li>
+                <li><a (click)="onLogout()"  matTooltip="Logout" class="">Logout</a></li>
           
               </ul>
             </div>
@@ -85,76 +85,15 @@
         <!-- OVERVIEW -->
 
 
-        <!-- <div class="panel panel-headline">
+        <div class="panel panel-headline">
           <div class="panel-heading">
             <h3 class="panel-title">Overview</h3>
             <p class="panel-subtitle">Today's Date: {{date}}</p>
           </div>
 
 
-              <div class="panel-body">
-            <div class="col-md-4">
-							
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">Meal Voucher System</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body no-padding bg-primary text-center">
-									<div class="padding-top-30 padding-bottom-30">
-                      <i class="fa fa-table fa-5x" aria-hidden="true"></i>
-										<h3>Events</h3>
-									</div>
-								</div>
-							</div>
-					
-            </div>
-            
-            <div class="col-md-4">
-				
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">Users </h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body no-padding bg-primary text-center">
-									<div class="padding-top-30 padding-bottom-30">
-                      <i class="fa fa-users fa-5x" aria-hidden="true"></i>
-										<h3>Colleagues and Admins</h3>
-									</div>
-								</div>
-							</div>
-						
-            </div>
-            
-            <div class="col-md-4">
-				
-							<div class="panel">
-								<div class="panel-heading">
-									<h3 class="panel-title">Event Manager</h3>
-									<div class="right">
-										<button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-										<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
-									</div>
-								</div>
-								<div class="panel-body no-padding bg-primary text-center">
-									<div class="padding-top-30 padding-bottom-30">
-                      <i class="fa fa-table fa-5x" aria-hidden="true"></i>
-										<h3>Locations and Resturants</h3>
-									</div>
-								</div>
-							</div>
-							
-						</div>
            
-          </div>
-        </div> -->
+        </div>
 
 
         <div  class="row">
@@ -172,7 +111,7 @@
                 <form #form = "ngForm" (ngSubmit)="onSubmit(form)">
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>&nbsp;Firm Number</span>
-                  <input class="form-control"  name = "fmno" type="number" maxlength="6" minlength='6' ngModel required>
+                  <input class="form-control"  name = "fmno" type="number" max="6" min="6" ngModel required>
                 </div>
   
               
@@ -228,7 +167,7 @@
                 <ul class="list-unstyled activity-list">
                   <li *ngFor = "let colleague of persons">
                     <img src={{colleague.picture}} alt="Profile Picture" class="img-circle pull-left avatar">
-                    <p><a >{{colleague.name}} {{colleague.surname}}</a> is part of the Voucher system. Account status : <span *ngIf="!colleague.isActive" class="timestamp2">In-Active</span> <span *ngIf="colleague.isActive" class="timestamp2">Active... <br> <i title="Delete" (click)="onDelete(colleague)" class="fa fa-trash-o" style="color:red; font-size:18px" aria-hidden="true"></i></span></p>
+                    <p><a >{{colleague.name}} {{colleague.surname}}</a> is part of the Voucher system. Account status : <span *ngIf="!colleague.isActive" class="timestamp2">In-Active</span> <span *ngIf="colleague.isActive" class="timestamp2">Active... <br> <i *ngIf="isAdmin" matTooltip="Delete" (click)="onDelete(colleague)" class="fa fa-trash-o" style="color:red; font-size:18px" aria-hidden="true"></i></span></p>
                     
                   </li>
                   

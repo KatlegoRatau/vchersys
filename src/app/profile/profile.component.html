@@ -13,23 +13,14 @@
 			
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle icon-menu" data-toggle="dropdown">
-                <i class="lnr lnr-ala
-                rm"></i>
-								<span class="badge bg-danger">5</span>
-							</a>
-							<ul class="dropdown-menu notifications">
-								<li><a  class="more">Notifications</a></li>
-							</ul>
-						</li>
+						
 					
 						<li class="dropdown">
 							<a  class="dropdown-toggle" data-toggle="dropdown"><img src={{userInfo.picture}} class="img-circle" alt="Picture"> <span>{{userInfo.name}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
 								<li><a  routerLink = "/profile" ><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 							
-								<li><a (click)="onLogout()"  ><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a (click)="onLogout()"  matTooltip="Logout"  ><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 						<!-- <li>
@@ -55,7 +46,7 @@
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
 									<li><a routerLink = "/profile" class="">Profile</a></li>
-									<li><a (click)="onLogout()"  class="">Logout</a></li>
+									<li><a (click)="onLogout()"  matTooltip="Logout" class="">Logout</a></li>
 								
 								</ul>
 							</div>

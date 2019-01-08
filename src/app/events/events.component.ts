@@ -23,12 +23,18 @@ export class EventsComponent implements OnInit {
    events:any[];
 
    isAdmin:boolean = false;
-  
+   
+   eventsByDate:any[];
 
+   isFilter:boolean = false;
+ 
   constructor(private http: Http, private zone: NgZone,private router: Router) { }
 
   onAddEvent(form)
   {
+
+    this.isFilter = false;
+
     let event = {
 
       event_id : form.value.event_id,
@@ -78,6 +84,7 @@ export class EventsComponent implements OnInit {
 
   onLogout()
   {
+    this.isFilter = false;
     localStorage.removeItem("user");
     localStorage.removeItem("control");
     this.router.navigate(['/logmain']);
@@ -90,6 +97,41 @@ export class EventsComponent implements OnInit {
     firebase.database().ref('event/' + event.key).remove();
     this.ngOnInit();
 
+  }
+
+  onFilter(form)
+  {
+
+    console.log(form.value);
+
+      if(!form.value.start_date || !form.value.end_date )
+      {
+         
+            alert("Please select all dates");
+            return ;
+
+
+
+      }else{
+
+        this.eventsByDate = [];
+
+        this.isFilter = true;
+
+        for(let i =0 ; i< this.events.length; i++)
+        {
+             if(this.events[i].event_date >= form.value.start_date && this.events[i].event_date <= form.value.end_date)
+             {
+                 
+                this.eventsByDate.push(this.events[i]);
+             }
+
+        }
+       
+      }
+
+
+   
   }
 
   ngOnInit() {
@@ -162,6 +204,7 @@ export class EventsComponent implements OnInit {
    person.key = childSnapshot.key
    
     this.events.push(person);
+
 
  });
    
